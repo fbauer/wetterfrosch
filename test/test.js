@@ -43,3 +43,12 @@ test("RFC 3339", function() {
 	  )
 	}
     );
+
+test("JSON dates", function() {
+    var d = new Date(2012, 1, 1);
+    var json = d.toJSON();
+    equal(json, "2012-01-31T23:00:00.000Z", "assert that toJSON is producing something sensible");
+    var nd = new Date(json);
+    deepEqual(nd, d, "assert that parsing JSON is producing something sensible");
+});
+
