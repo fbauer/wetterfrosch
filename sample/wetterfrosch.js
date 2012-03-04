@@ -14,14 +14,31 @@ ajaxDataRenderer = function(url, plot, options) {
 	}
     });
     return ret;
-}
+};
  
 var extractTemp = function(data) {
-    return [jQuery.map(data,
-		      function(n, i) {
-			  return([[new Date(n["ts"]), n["temp"]]]);
-		      })
-	   ]
-}
+    var accu = {};
+    var channels = [];
+    jQuery.each(data,
+		function(i, n) {
+		    var chan = n["ch"];
+		    if(!(chan in accu)) {
+			accu[chan] = [];
+			channels.push(chan);
+		    };
+		    accu[chan].push([new Date(n["ts"]), n["temp"]]);
+		})
+    var result = [];
+    var max_chan = Math.max.apply(Math, channels);
+    for(var i=1; i<=max_chan; i++) {
+	if(i in accu) {
+	    result.push(accu[i]);
+	}
+	else {
+	    result.push([]);
+	};
+    };
+    return(result);
+};
 
 
