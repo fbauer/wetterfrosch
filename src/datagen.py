@@ -2,9 +2,16 @@ import datetime
 import json
 import random
 
+class TimeZone(datetime.tzinfo):
+    '''Dummy time zone implementation'''
+    def utcoffset(self, d):
+        return datetime.timedelta(minutes=60)
+    def dst(self, d):
+        return datetime.timedelta(minutes=0)
+    
 def ts():
-    return datetime.datetime.strftime(datetime.datetime.now(),
-                                      '%Y-%m-%dT%H:%M:%S.%fZ')
+    return datetime.datetime.strftime(datetime.datetime.now(TimeZone()),
+                                      '%Y-%m-%dT%H:%M:%S%z')
 def ch():
     return random.randint(1, 5)
 
