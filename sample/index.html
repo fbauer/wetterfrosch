@@ -5,9 +5,9 @@
 	
 	<title>Temperature plotting example</title>
 
-    <link class="include" rel="stylesheet" type="text/css" href="jquery.jqplot.min.css" />
+    <link rel="stylesheet" type="text/css" href="jquery.jqplot.min.css" />
   <!--[if lt IE 9]><script language="javascript" type="text/javascript" src="excanvas.min.js"></script><![endif]-->
-    <script class="include" type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="jquery.js"></script>
     
    
 </head>
@@ -15,7 +15,7 @@
       
 <div id="tchart" style="height:300px; width:500px;"></div>
   
-<script class="code" type="text/javascript">
+<script type="text/javascript">
     $(document).ready(function(){
 
   // The url for our json data
@@ -29,26 +29,14 @@
     dataRenderer: ajaxDataRenderer,
     dataRendererOptions: {
       unusedOptionalUrl: jsonurl
-    }
+    },
+    axes:{xaxis:{renderer:$.jqplot.DateAxisRenderer}}
   });
 });
 </script>
 
-
-<script class="include" type="text/javascript" src="jquery.jqplot.js"></script>
-<script class="include" type="text/javascript" src="wetterfrosch.js"></script>
-
-<!-- End Don't touch this! -->
-
-<!-- Additional plugins go here -->
-
-   
-
-<!-- End additional plugins -->
-
-
-
+<script type="text/javascript" src="jquery.jqplot.js"></script>
+<script type="text/javascript" src="jqplot.dateAxisRenderer.js"></script>
+<script type="text/javascript" src="wetterfrosch.js"></script>
 </body>
-
-
 </html>

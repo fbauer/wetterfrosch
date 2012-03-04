@@ -13,14 +13,15 @@ ajaxDataRenderer = function(url, plot, options) {
 	    ret = extractTemp(data);
 	}
     });
-    return [ret];
+    return ret;
 }
  
 var extractTemp = function(data) {
-    return jQuery.map(data,
+    return [jQuery.map(data,
 		      function(n, i) {
-			  return([[i, n["temp"]]]);
-		      });
+			  return([[new Date(n["ts"]), n["temp"]]]);
+		      })
+	   ]
 }
 
 
