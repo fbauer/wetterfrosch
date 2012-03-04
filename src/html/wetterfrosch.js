@@ -10,14 +10,17 @@ ajaxDataRenderer = function(url, plot, options) {
 	url: url,
 	dataType:"json",
 	success: function(data) {
-	    ret = jQuery.map(data, function(n, i) {
-		return([[i, n["temp"]]]);
-	    });
+	    ret = extractTemp(data);
 	}
     });
     return [ret];
-};
+}
  
-
+var extractTemp = function(data) {
+    return jQuery.map(data,
+		      function(n, i) {
+			  return([[i, n["temp"]]]);
+		      });
+}
 
 
