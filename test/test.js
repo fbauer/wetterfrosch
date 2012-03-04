@@ -26,6 +26,28 @@ test("extractTemp", function() {
     console.debug(output.toString());
     deepEqual(extractTemp(input), output, 
 	      "Time stamps given as string are converted to Date");
+
+    var input2ch = [{ch: 1, temp: 2.0, ts: "2012-09-01"},
+		    {ch: 2, temp: 3.0, ts: "2012-09-02"},
+		    {ch: 1, temp: 3.0, ts: "2012-09-02"}
+		   ];
+    var output2ch = [[[new Date("2012-09-01"), 2.0], [new Date("2012-09-02"), 3.0]],
+		     [[new Date("2012-09-02"), 3.0]]
+		    ];
+    deepEqual(extractTemp(input2ch), output2ch, 
+	      "Input objects are sorted according to their channel ch");
+
+    var input2ch_sparse = [{ch: 1, temp: 2.0, ts: "2012-09-01"},
+			   {ch: 3, temp: 3.0, ts: "2012-09-02"},
+			   {ch: 1, temp: 3.0, ts: "2012-09-02"}
+			  ];
+    var output2ch_sparse = [[[new Date("2012-09-01"), 2.0], [new Date("2012-09-02"), 3.0]],
+			    [],
+			    [[new Date("2012-09-02"), 3.0]]
+			   ];
+    deepEqual(extractTemp(input2ch_sparse), output2ch_sparse, 
+	      "Missing channels are filled with an empty array");
+
 });
 
 test("RFC 3339", function() {

@@ -14,3 +14,5 @@ cp build/sample/* "$BUILDDIR/sample"
 cd "$BUILDDIR"
 git add .
 git commit
+git push
+
