@@ -9,5 +9,7 @@ fi
 cp src/jqplot/*.css "$BUILDDIR"
 cp src/jqplot/*.js "$BUILDDIR"
 cp "src/jqplot/plugins/jqplot.dateAxisRenderer.js" "$BUILDDIR"
+cp "src/jqplot/plugins/jqplot.canvasTextRenderer.min.js" "$BUILDDIR"
+cp "src/jqplot/plugins/jqplot.canvasAxisLabelRenderer.min.js" "$BUILDDIR"
 cp src/html/* "$BUILDDIR"
 python src/datagen.py > "$BUILDDIR"/jsondata.txt

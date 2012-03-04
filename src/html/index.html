@@ -4,7 +4,7 @@
 <head>
 	
 	<title>Temperature plotting example</title>
-
+	<meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="jquery.jqplot.min.css" />
   <!--[if lt IE 9]><script language="javascript" type="text/javascript" src="excanvas.min.js"></script><![endif]-->
     <script type="text/javascript" src="jquery.js"></script>
@@ -30,13 +30,24 @@
     dataRendererOptions: {
       unusedOptionalUrl: jsonurl
     },
-    axes:{xaxis:{renderer:$.jqplot.DateAxisRenderer}}
-  });
+    axes:{xaxis: {renderer:$.jqplot.DateAxisRenderer, 
+                  label: "time",
+                  labelRenderer: $.jqplot.CanvasAxisLabelRenderer},
+          yaxis: {label: "Temperature (°C)", 
+                  labelRenderer: $.jqplot.CanvasAxisLabelRenderer}},
+    series: [{label: "kitchen"},
+             {label: "attic"},
+             {label: "outside"},
+             ],
+    legend: {show: true, location: 'nw'}
+    });
 });
 </script>
 
 <script type="text/javascript" src="jquery.jqplot.js"></script>
 <script type="text/javascript" src="jqplot.dateAxisRenderer.js"></script>
+<script type="text/javascript" src="jqplot.canvasTextRenderer.min.js"></script>
+<script type="text/javascript" src="jqplot.canvasAxisLabelRenderer.min.js"></script>
 <script type="text/javascript" src="wetterfrosch.js"></script>
 </body>
 </html>
