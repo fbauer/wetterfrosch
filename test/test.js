@@ -6,7 +6,8 @@ var ch='Ch';
 var temp='temp';
 var humidity='hum';
 var ts='ts';
-var debug = function () {} ; if (window.console != undefined) { debug = console.log; }
+var debug = function() {};
+if (window.console != undefined) { debug = console.log; };
 
 test("extractTemp", function() {
     var input = [];
@@ -23,8 +24,6 @@ test("extractTemp", function() {
     input = [{ch: 1, temp: 2.0, ts: "2012-09-01"},
 	     {ch: 1, temp: 3.0, ts: "2012-09-02"}
 	    ];
-    debug(extractTemp(input).toString());
-    debug(output.toString());
     deepEqual(extractTemp(input), output, 
 	      "Time stamps given as string are converted to Date");
 
@@ -55,7 +54,6 @@ test("RFC 3339", function() {
     $.each(["2012-03-04T13:04:59+0100",
 	   "2012-03-04T12:04:59Z"],
 	   function(index, datestring) {
-	       debug(datestring);
 	       var input = new Date(datestring);
 	       equal(input.toString(), "Sun Mar 04 2012 13:04:59 GMT+0100 (CET)", "sanity check" );
 	       var my_jsdate = new $.jsDate(input);
