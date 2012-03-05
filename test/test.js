@@ -7,6 +7,7 @@ var temp='temp';
 var humidity='hum';
 var ts='ts';
 var debug = function () {} ; if (window.console != undefined) { debug = console.log; }
+
 test("extractTemp", function() {
     var input = [];
     deepEqual(extractTemp(input), [], 
@@ -58,7 +59,7 @@ test("RFC 3339", function() {
 	       var input = new Date(datestring);
 	       equal(input.toString(), "Sun Mar 04 2012 13:04:59 GMT+0100 (CET)", "sanity check" );
 	       var my_jsdate = new $.jsDate(input);
-	       equal(my_jsdate.toString(), "Sun Mar 04 2012 13:04:59 GMT+0100 (CET)", "calling jsDate with a Date instance works" );
+	       equal(my_jsdate.toString(), input.toString(), "calling jsDate with a Date instance works" );
 	       my_jsdate = new $.jsDate(datestring);
 	       equal(my_jsdate.toString(), "NaN", "calling jsDate with an RFC 3339 timestamp results in a NaN" );
 	   }
