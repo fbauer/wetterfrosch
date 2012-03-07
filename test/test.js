@@ -2,7 +2,7 @@
  * Names of keys in json schema are not yet set in stone. Use global
  * variables for them.
  */
-var ch='Ch';
+var ch='ch';
 var temp='temp';
 var humidity='hum';
 var ts='ts';
