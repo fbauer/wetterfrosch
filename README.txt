@@ -7,8 +7,9 @@ any POSIX system.
 Dependencies
 ############
 
-Wetterfrosch depends on jquery and jqplot. A copy of jqplot
-1.0.0b2_r1012 is included in the source distribution.
+Wetterfrosch depends on jquery, jqplot and MochiKit.DateTime. Copies 
+of jqplot 1.0.0b2_r1012 and MochiKit.DateTime v1.4.2 are included in
+the source distribution.
 
 Installation
 ############

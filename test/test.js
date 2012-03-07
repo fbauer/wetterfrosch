@@ -2,12 +2,11 @@
  * Names of keys in json schema are not yet set in stone. Use global
  * variables for them.
  */
-var ch='Ch';
+var ch='ch';
 var temp='temp';
 var humidity='hum';
 var ts='ts';
-var debug = function() {};
-if (window.console != undefined) { debug = console.log; };
+
 
 test("extractTemp", function() {
     var input = [];
@@ -47,29 +46,23 @@ test("extractTemp", function() {
 			   ];
     deepEqual(extractTemp(input2ch_sparse), output2ch_sparse, 
 	      "Missing channels are filled with an empty array");
+    input = [{ch: 1, temp: 3.0, ts: "2012 09 02"}];
 
+    raises(extractTemp(input), "a",
+	   "raise Exception in case of malformed date format");
 });
-
+toISOTimestamp = function(date) {return(MochiKit.DateTime.toISOTimestamp(date, true))};
 test("RFC 3339", function() {
-    $.each(["2012-03-04T13:04:59+0100",
-	   "2012-03-04T12:04:59Z"],
-	   function(index, datestring) {
-	       var input = new Date(datestring);
-	       equal(input.toString(), "Sun Mar 04 2012 13:04:59 GMT+0100 (CET)", "sanity check" );
-	       var my_jsdate = new $.jsDate(input);
-	       equal(my_jsdate.toString(), input.toString(), "calling jsDate with a Date instance works" );
-	       my_jsdate = new $.jsDate(datestring);
-	       equal(my_jsdate.toString(), "NaN", "calling jsDate with an RFC 3339 timestamp results in a NaN" );
-	   }
-	  )
-	}
-    );
-
-test("JSON dates", function() {
-    var d = new Date(2012, 1, 1);
-    var json = d.toJSON();
-    equal(json, "2012-01-31T23:00:00.000Z", "assert that toJSON is producing something sensible");
-    var nd = new Date(json);
-    deepEqual(nd, d, "assert that parsing JSON is producing something sensible");
+    datestring = "2012-03-04T12:04:59Z";
+    var input = MochiKit.DateTime.isoTimestamp(datestring);
+    equal(toISOTimestamp(input), "2012-03-04T12:04:59Z", "sanity check");
+    var my_jsdate = new $.jsDate(input);
+    equal(toISOTimestamp(my_jsdate), "2012-03-04T12:04:59Z",
+	  "calling jsDate with a Date instance works" );
+    my_jsdate = new $.jsDate(datestring);
+    equal(my_jsdate.toString(), "NaN", 
+	  "calling jsDate with an RFC 3339 timestamp results in a NaN" );
 });
+
+
 
