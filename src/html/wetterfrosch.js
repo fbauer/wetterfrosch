@@ -16,6 +16,8 @@ ajaxDataRenderer = function(url, plot, options) {
     return ret;
 };
 
+var isodate = MochiKit.DateTime.isoTimestamp;
+
 var extractTemp = function(data) {
     var accu = {};
     var channels = [];
