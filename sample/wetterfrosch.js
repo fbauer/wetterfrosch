@@ -28,7 +28,7 @@ var extractTemp = function(data) {
             accu[chan] = [];
             channels.push(chan);
             }
-            accu[chan].push([new Date(n['ts']), n['temp']]);
+            accu[chan].push([isodate(n['ts']), n['temp']]);
         });
     var result = [];
     var max_chan = Math.max.apply(Math, channels);
