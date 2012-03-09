@@ -12,43 +12,43 @@ test("extractTemp", function() {
     var input = [];
     deepEqual(extractTemp(input), [],
 	      "Empty lists should be handled correctly");
-    input = [{ch: 1, temp: 2.0, ts: new Date("2012-09-01")},
-	     {ch: 1, temp: 3.0, ts: new Date("2012-09-02")}
+    var s1 = "2012-09-01T19:33:08Z";
+    var s2 = "2012-09-02T20:45:23Z";
+    input = [{ch: 1, temp: 2.0, ts: s1},
+	     {ch: 1, temp: 3.0, ts: s2}
 	    ];
-    var output = [[[new Date("2012-09-01"), 2.0],
-                   [new Date("2012-09-02"), 3.0]]];
-    deepEqual(extractTemp(input), output,
-	      "Data for single plot is aggregated in first sub-array");
+    var d1 = MochiKit.DateTime.isoTimestamp(s1);
+    var d2 = MochiKit.DateTime.isoTimestamp(s2);
+    equal(Object.prototype.toString.call(d2), "[object Date]");
+    var output = [[[d1, 2.0], [d2, 3.0]]];
+    console.log(output);
+    var got = extractTemp(input);
+    deepEqual(got, output,
+              "Data for single plot is aggregated in first sub-array");
 
-    input = [{ch: 1, temp: 2.0, ts: "2012-09-01"},
-	     {ch: 1, temp: 3.0, ts: "2012-09-02"}
-	    ];
-    deepEqual(extractTemp(input), output,
-	      "Time stamps given as string are converted to Date");
+    var input2ch = [{ch: 1, temp: 2.0, ts: s1},
+		    {ch: 2, temp: 3.0, ts: s2},
+		    {ch: 1, temp: 3.0, ts: s2}];
 
-    var input2ch = [{ch: 1, temp: 2.0, ts: "2012-09-01"},
-		    {ch: 2, temp: 3.0, ts: "2012-09-02"},
-		    {ch: 1, temp: 3.0, ts: "2012-09-02"}
-		   ];
-    var output2ch = [[[new Date("2012-09-01"), 2.0],
-                      [new Date("2012-09-02"), 3.0]],
-		     [[new Date("2012-09-02"), 3.0]]];
+    var output2ch = [[[d1, 2.0],
+                      [d2, 3.0]],
+		     [[d2, 3.0]]];
     deepEqual(extractTemp(input2ch), output2ch,
 	      "Input objects are sorted according to their channel ch");
 
-    var input2ch_sparse = [{ch: 1, temp: 2.0, ts: "2012-09-01"},
-			   {ch: 3, temp: 3.0, ts: "2012-09-02"},
-			   {ch: 1, temp: 3.0, ts: "2012-09-02"}
+    var input2ch_sparse = [{ch: 1, temp: 2.0, ts: s2},
+			   {ch: 3, temp: 3.0, ts: s1},
+			   {ch: 1, temp: 3.0, ts: s2}
 			  ];
-    var output2ch_sparse = [[[new Date("2012-09-01"), 2.0],
-                             [new Date("2012-09-02"), 3.0]],
+    var output2ch_sparse = [[[d2, 2.0],
+                             [d2, 3.0]],
 			    [],
-			    [[new Date("2012-09-02"), 3.0]]];
+			    [[d1, 3.0]]];
     deepEqual(extractTemp(input2ch_sparse), output2ch_sparse,
 	      "Missing channels are filled with an empty array");
     input = [{ch: 1, temp: 3.0, ts: "2012 09 02"}];
 
-    raises(extractTemp(input), "a",
+    raises(extractTemp(input), null,
 	   "raise Exception in case of malformed date format");
 });
 
