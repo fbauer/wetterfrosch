@@ -12,6 +12,7 @@ fi
 ./build.sh
 cp build/sample/* "$BUILDDIR/sample"
 cd "$BUILDDIR"
+git checkout master && git pull && git checkout gh-pages
 git add .
 git commit
 git push
