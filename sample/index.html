@@ -1,55 +1,24 @@
 <!DOCTYPE html>
-
 <html>
 <head>
-	
-	<title>Temperature plotting example</title>
-	<meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="jquery.jqplot.min.css" />
-  <!--[if lt IE 9]><script language="javascript" type="text/javascript" src="excanvas.min.js"></script><![endif]-->
-    <script type="text/javascript" src="jquery.js"></script>
-    
-   
+  <title>Temperature plotting example</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="jquery.jqplot.min.css" />
 </head>
 <body>
       
-<div id="tchart" style="height:300px; width:500px;"></div>
+  <div id="tchart" style="height:300px; width:500px;"></div>
   
-<script type="text/javascript">
-    $(document).ready(function(){
-
-  // The url for our json data
-  var jsonurl = "./jsondata.txt";
-
-  // passing in the url string as the jqPlot data argument is a handy
-  // shortcut for our renderer.  You could also have used the
-  // "dataRendererOptions" option to pass in the url.
-  var plot2 = $.jqplot('tchart', jsonurl,{
-    title: "Temperature",
-    dataRenderer: ajaxDataRenderer,
-    dataRendererOptions: {
-      unusedOptionalUrl: jsonurl
-    },
-    axes:{xaxis: {renderer:$.jqplot.DateAxisRenderer, 
-                  label: "time",
-                  labelRenderer: $.jqplot.CanvasAxisLabelRenderer},
-          yaxis: {label: "Temperature (°C)", 
-                  labelRenderer: $.jqplot.CanvasAxisLabelRenderer}},
-    series: [{label: "kitchen"},
-             {label: "attic"},
-             {label: "outside"},
-             ],
-    legend: {show: true, location: 'nw'}
-    });
-});
-</script>
-
-<script type="text/javascript" src="jquery.jqplot.js"></script>
-<script type="text/javascript" src="jqplot.dateAxisRenderer.js"></script>
-<script type="text/javascript" src="jqplot.canvasTextRenderer.min.js"></script>
-<script type="text/javascript" src="jqplot.canvasAxisLabelRenderer.min.js"></script>
-<script type="text/javascript">MochiKit = {__export__: false};</script>
-<script type="text/javascript" src="MochiKit.js"></script>
-<script type="text/javascript" src="wetterfrosch.js"></script>
+  <!--[if lt IE 9]>
+      <script language="javascript" type="text/javascript" src="excanvas.min.js"></script>
+      <![endif]-->
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="jquery.jqplot.js"></script>
+  <script type="text/javascript" src="jqplot.dateAxisRenderer.js"></script>
+  <script type="text/javascript" src="jqplot.canvasTextRenderer.min.js"></script>
+  <script type="text/javascript" src="jqplot.canvasAxisLabelRenderer.min.js"></script>
+  <script type="text/javascript">MochiKit = {__export__: false};</script>
+  <script type="text/javascript" src="MochiKit.js"></script>
+  <script type="text/javascript" src="wetterfrosch.js"></script>
 </body>
 </html>
