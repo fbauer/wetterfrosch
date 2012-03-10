@@ -44,3 +44,30 @@ var extractTemp = function(data) {
 };
 
 
+$(document).ready(function(){
+
+  // The url for our json data
+  var jsonurl = "./jsondata.txt";
+
+  // passing in the url string as the jqPlot data argument is a handy
+  // shortcut for our renderer.  You could also have used the
+  // "dataRendererOptions" option to pass in the url.
+  var plot2 = $.jqplot('tchart', jsonurl,{
+    title: "Temperature",
+    dataRenderer: ajaxDataRenderer,
+    dataRendererOptions: {
+      unusedOptionalUrl: jsonurl
+    },
+    axes:{xaxis: {renderer:$.jqplot.DateAxisRenderer,
+                  label: "time",
+                  labelRenderer: $.jqplot.CanvasAxisLabelRenderer},
+          yaxis: {label: "Temperature (°C)",
+                  labelRenderer: $.jqplot.CanvasAxisLabelRenderer}},
+    series: [{label: "kitchen"},
+             {label: "attic"},
+             {label: "outside"}
+             ],
+    legend: {show: true, location: 'nw'}
+    });
+});
+
