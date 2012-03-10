@@ -1275,7 +1275,7 @@ return "["+this.NAME+" "+this.VERSION+"]";
 MochiKit.MochiKit.toString=function(){
 return this.__repr__();
 };
-MochiKit.MochiKit.SUBMODULES=["Base","Iter","Logging","DateTime","Format","Async","DOM","Selector","Style","LoggingPane","Color","Signal","Position","Visual","DragAndDrop","Sortable"];
+MochiKit.MochiKit.SUBMODULES=["Base","DateTime"];
 if(typeof (JSAN)!="undefined"||typeof (dojo)!="undefined"){
 if(typeof (dojo)!="undefined"){
 dojo.provide("MochiKit.MochiKit");
