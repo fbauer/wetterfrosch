@@ -21,3 +21,4 @@ cat src/jqplot/plugins/jqplot.canvasTextRenderer.min.js >> "$BUILDDIR"/wetterfro
 cat src/jqplot/plugins/jqplot.canvasAxisLabelRenderer.min.js >> "$BUILDDIR"/wetterfrosch.min.js
 cat src/html/MochiKit.js >> "$BUILDDIR"/wetterfrosch.min.js
 cat src/html/wetterfrosch.js >> "$BUILDDIR"/wetterfrosch.min.js
+python jsmin.py "$BUILDDIR"/wetterfrosch.min.js > "$BUILDDIR"/temp && mv "$BUILDDIR"/temp "$BUILDDIR"/wetterfrosch.min.js
