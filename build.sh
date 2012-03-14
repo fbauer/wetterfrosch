@@ -12,7 +12,7 @@ cp "src/jqplot/plugins/jqplot.dateAxisRenderer.js" "$BUILDDIR"
 cp "src/jqplot/plugins/jqplot.canvasTextRenderer.min.js" "$BUILDDIR"
 cp "src/jqplot/plugins/jqplot.canvasAxisLabelRenderer.min.js" "$BUILDDIR"
 cp src/html/* "$BUILDDIR"
-cp src/imgs/wetterfrosch.png "$BUILDDIR"
+cp src/img/wetterfrosch.png "$BUILDDIR"
 python src/datagen.py > "$BUILDDIR"/jsondata.txt
 
 cat src/jqplot/jquery.min.js > "$BUILDDIR"/wetterfrosch.min.js
