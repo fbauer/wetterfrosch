@@ -2,7 +2,7 @@
 Wetterfrosch is a small server used to aggregate data from wireless
 wheather stations. It is designed to run in the constrained
 environment of AVM Fritz.Box WLAN routers but should be portable to
-any POSIX system.
+any linux system.
 
 Dependencies
 ############
